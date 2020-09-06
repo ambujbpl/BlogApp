@@ -6,8 +6,7 @@ const blogRoutes = require('./routes/blogRoutes');
 // express app
 const app = express();
 const config = require('./config/config');
-console.log('config : ',config);
-const port = 3355;
+
 mongoose.connect(config.connectionString, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(result => {
     app.listen(config.port);
