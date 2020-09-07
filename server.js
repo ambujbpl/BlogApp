@@ -1,11 +1,15 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const blogRoutes = require('./routes/blogRoutes');
 
 // express app
 const app = express();
 const config = require('./config/config');
+
+// Blogs Routes
+const blogRoutes = require('./mvc/blog/route/blogRoutes');
+// About Routes
+const aboutRoutes = require('./mvc/about/route/aboutRoutes');
 
 mongoose.connect(config.connectionString, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(result => {
@@ -16,6 +20,7 @@ mongoose.connect(config.connectionString, { useNewUrlParser: true, useUnifiedTop
 
 // register view engine
 app.set('view engine', 'ejs');
+app.set('views','./public/views');
 
 // middleware & static files
 app.use(express.static('public'));
@@ -31,12 +36,10 @@ app.get('/', (req, res) => {
   res.redirect('/blogs');
 });
 
-app.get('/about', (req, res) => {
-  res.render('about', { title: 'About' });
-});
-
 // blog routes
 app.use('/blogs', blogRoutes);
+// blog routes
+app.use('/about', aboutRoutes);
 
 // 404 page
 app.use((req, res) => {
