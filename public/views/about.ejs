@@ -6,9 +6,16 @@
 
   <div class="about content">
     <h2>About Us</h2>
-    Experienced in the field of software development. Played major role with technology like HTML, CSS, JavaScript, JQuery, Bootstrap, MaterializeCss, NodeJs, Strapi, Php Core, MongoDB, MySQL, MsSQL, React Native, Angular and proved the ability to work under pressure by taking complete ownership of tasks.<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-           I enjoy being challenged and working on projects that require me to work outside my comfort and knowledge set, as continuing to learn new languages and development techniques are important to me and the success of my organization. And I have highly skilled in software development and worked with AWS, Azure, Heroku, DigitalOcean, C-Panel and others cloud services.
+    <% if (about.length > 0) { %>
+      <% about.forEach(ab => { %>
+        <a class="single" href="/about/<%= ab._id %>">
+          <p class="title"><%- ab.body %></p>
+        </a>
+      <% }) %>
+    <% } else { %>
+      <p>There are no about details to display...</p>
+    <% } %>
   </div>
 
   <%- include("./partials/footer.ejs") %>

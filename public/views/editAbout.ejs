@@ -1,0 +1,17 @@
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+
+<body>
+  <%- include("./partials/nav.ejs") %>
+
+  <div class="create-blog content">
+    <form action="/about/updateAbout" method="POST">
+      <label for="body">About body:</label>
+      <textarea style="width:100%; height:50%;" id="body" name="body" required><%- about.body %></textarea>
+      <button>Submit</button>
+    </form>
+  </div>
+
+  <%- include("./partials/footer.ejs") %>
+</body>
+</html>
