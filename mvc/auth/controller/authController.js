@@ -1,66 +1,73 @@
 const User = require('./../model/user');
+const config = require('./../../../config/config');
+const jwt = require('jsonwebtoken');
 
-// const blog_index = (req, res) => {
-//   User.find().sort({ createdAt: -1 })
-//     .then(result => {
-//       res.render('index', { blogs: result, title: 'All blogs' });
-//     })
-//     .catch(err => {
-//       console.log(err);
-//     });
-// }
 
-// const blog_details = (req, res) => {
-//   const id = req.params.id;
-//   User.findById(id)
-//     .then(result => {
-//       res.render('details', { blog: result, title: 'Blog Details' });
-//     })
-//     .catch(err => {
-//       console.log(err);
-//       res.render('404', { title: 'Blog not found' });
-//     });
-// }
+// controller actions
+const signup_get = (req, res) => {
+  res.render('signup', { title: 'Signup' });
+}
 
-// const blog_create_get = (req, res) => {
-//   res.render('create', { title: 'Create a new blog' });
-// }
+const login_get = (req, res) => {
+  res.render('login', { title: 'Login' });
+}
 
-// const blog_create_post = (req, res) => {
-//   const blog = new User(req.body);
-//   blog.save()
-//     .then(result => {
-//       res.redirect('/blogs');
-//     })
-//     .catch(err => {
-//       console.log(err);
-//     });
-// }
+const signup_post = async (req, res) => {
+  const { name, email, password } = req.body;
+  try {
+    const user = await User.create({ name, email, password });
+    const token = createToken(user._id);
+    res.cookie('jwt', token, { httpOnly: true, maxAge: config.maxAge * 1000 });
+    res.status(201).json({user: user._id});
+  }
+  catch(err) {
+    const errors = handleErrors(err);
+    res.status(400).json({ errors });
+  }
+ 
+}
 
-// const blog_delete = (req, res) => {
-//   const id = req.params.id;
-//   User.findByIdAndDelete(id)
-//     .then(result => {
-//       res.json({ redirect: '/blogs' });
-//     })
-//     .catch(err => {
-//       console.log(err);
-//     });
-// }
+const login_post = async (req, res) => {
+  const { email, password } = req.body;
 
-// module.exports = {
-//   blog_index, 
-//   blog_details, 
-//   blog_create_get, 
-//   blog_create_post, 
-//   blog_delete
-// }
-// 
+  try {
+    const user = await User.login(email, password);
+    const token = createToken(user._id);
+    res.cookie('jwt', token, { httpOnly: true, maxAge: config.maxAge * 1000 });
+    res.status(200).json({ user: user._id });
+  } catch (err) {
+    const errors = handleErrors(err);
+    res.status(400).json({ errors });
+  }
+}
+
+const logout_get = (req, res) => {
+  res.cookie('jwt', '', { maxAge: 1 });
+  res.redirect('/');
+}
+
+module.exports = {
+  signup_get, 
+  login_get, 
+  signup_post, 
+  login_post, 
+  logout_get
+} 
 
 // handle errors
 const handleErrors = (err) => {
   console.log(err.message, err.code);
   let errors = { name: '', email: '', password: '' };
+
+  // incorrect email
+  if (err.message === 'incorrect email') {
+    errors.email = 'That email is not registered';
+  }
+
+  // incorrect password
+  if (err.message === 'incorrect password') {
+    errors.password = 'That password is incorrect';
+  }
 
   // duplicate email error
   if (err.code === 11000) {
@@ -81,31 +88,10 @@ const handleErrors = (err) => {
   return errors;
 }
 
-// controller actions
-module.exports.signup_get = (req, res) => {
-  res.render('signup', { title: 'Signup' });
-}
-
-module.exports.login_get = (req, res) => {
-  res.render('login', { title: 'Login' });
-}
-
-module.exports.signup_post = async (req, res) => {
-  const { name, email, password } = req.body;
-  try {
-    const user = await User.create({ name, email, password });
-    res.status(201).json(user);
-  }
-  catch(err) {
-    const errors = handleErrors(err);
-    res.status(400).json({ errors });
-  }
- 
-}
-
-module.exports.login_post = async (req, res) => {
-  const { email, password } = req.body;
-
-  console.log(email, password);
-  res.send('user login');
-}
+// create json web token
+// const maxAge = 3 * 24 * 60 * 60; //3 Days
+const createToken = (id) => {
+  return jwt.sign({ id }, config.secret , {
+    expiresIn: config.maxAge
+  });
+};
