@@ -1,0 +1,66 @@
+{
+	"info": {
+		"_postman_id": "95c2f445-e3ca-4fd2-8128-52af1a6289be",
+		"name": "MongoBlog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Sign Up",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"ambuj\",\r\n    \"email\": \"ambuj@gmail.com\",\r\n    \"password\": \"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3355/signup",
+					"host": [
+						"localhost"
+					],
+					"port": "3355",
+					"path": [
+						"signup"
+					]
+				},
+				"description": "localhost:3355/signup"
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"ambuj@gmail.com\",\r\n    \"password\": \"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3355/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3355",
+					"path": [
+						"login"
+					]
+				},
+				"description": "localhost:3355/login"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
