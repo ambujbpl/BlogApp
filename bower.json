@@ -1,0 +1,22 @@
+{
+  "name": "Node-Mongo-Blog",
+  "description": "a simple blog app",
+  "main": "server.js",
+  "authors": [
+    "Ambuj Dubey"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/ambujbpl/nodeMongoBlog",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/assets/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.5.1",
+    "materialize": "^1.0.0"
+  }
+}

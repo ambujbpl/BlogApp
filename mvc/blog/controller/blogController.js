@@ -1,31 +1,55 @@
 const Blog = require('./../model/blog');
 
+/**
+ * { blog index }
+ *
+ * @param      {<type>}  req     The request
+ * @param      {<type>}  res     The resource
+ */
 const blog_index = (req, res) => {
   Blog.find().sort({ createdAt: -1 })
     .then(result => {
-      res.render('index', { blogs: result, title: 'All blogs' });
+      res.render('blog/index', { blogs: result, title: 'All blogs' });
     })
     .catch(err => {
       console.log(err);
     });
 }
 
+/**
+ * { blog details }
+ *
+ * @param      {<type>}  req     The request
+ * @param      {<type>}  res     The resource
+ */
 const blog_details = (req, res) => {
   const id = req.params.id;
   Blog.findById(id)
     .then(result => {
-      res.render('details', { blog: result, title: 'Blog Details' });
+      res.render('blog/details', { blog: result, title: 'Blog Details' });
     })
     .catch(err => {
       console.log(err);
-      res.render('404', { title: 'Blog not found' });
+      res.render('error/404', { title: 'Blog not found' });
     });
 }
 
+/**
+ * { blog create get }
+ *
+ * @param      {<type>}  req     The request
+ * @param      {<type>}  res     The resource
+ */
 const blog_create_get = (req, res) => {
-  res.render('create', { title: 'Create a new blog' });
+  res.render('blog/create', { title: 'Create a new blog' });
 }
 
+/**
+ * { blog_create_post }
+ *
+ * @param      {<type>}  req     The request
+ * @param      {<type>}  res     The resource
+ */
 const blog_create_post = (req, res) => {
   const blog = new Blog(req.body);
   blog.save()
@@ -37,6 +61,12 @@ const blog_create_post = (req, res) => {
     });
 }
 
+/**
+ * { blog delete }
+ *
+ * @param      {<type>}  req     The request
+ * @param      {<type>}  res     The resource
+ */
 const blog_delete = (req, res) => {
   const id = req.params.id;
   Blog.findByIdAndDelete(id)

@@ -55,7 +55,7 @@ app.use('/about', requireAuth, aboutRoutes);
 
 // 404 page
 app.use((req, res) => {
-  res.status(404).render('404', { title: '404' });
+  res.status(404).render('error/404', { title: '404' });
 });
 
 
@@ -67,16 +67,11 @@ app.use((req, res) => {
 //   res.cookie('newUser', false);
 //   res.cookie('isEmployee', true, { maxAge: 1000 * 60 * 60 * 24, httpOnly: true });
 //   res.cookie('isLogin', true, { maxAge: 1000 * 60 * 60 * 24, secure: true });
-
 //   res.send('you got the cookies!');
-
 // });
 
 // app.get('/get-cookies', (req, res) => {
-
 //   const cookies = req.cookies;
 //   console.log(cookies.newUser);
-
 //   res.json(cookies);
-
 // });

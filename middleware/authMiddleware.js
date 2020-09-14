@@ -2,6 +2,13 @@ const jwt = require('jsonwebtoken');
 const config = require('./../config/config');
 const User = require('./../mvc/auth/model/user');
 
+/**
+ * { require Auth }
+ *
+ * @param      {<type>}    req     The request
+ * @param      {<type>}    res     The resource
+ * @param      {Function}  next    The next
+ */
 const requireAuth = (req, res, next) => {
   const token = req.cookies.jwt;
 
@@ -21,7 +28,13 @@ const requireAuth = (req, res, next) => {
   }
 };
 
-// check current user
+/**
+ * { check User }
+ *
+ * @param      {<type>}    req     The request
+ * @param      {<type>}    res     The resource
+ * @param      {Function}  next    The next
+ */
 const checkUser = (req, res, next) => {
   const token = req.cookies.jwt;
   if (token) {
@@ -40,6 +53,5 @@ const checkUser = (req, res, next) => {
     next();
   }
 };
-
 
 module.exports = { requireAuth, checkUser };
