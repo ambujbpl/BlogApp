@@ -51,6 +51,8 @@ const blog_create_get = (req, res) => {
  * @param      {<type>}  res     The resource
  */
 const blog_create_post = (req, res) => {
+  req.body.created_by = req.cookies.user_id;
+  console.log('req.body : ',req.body)
   const blog = new Blog(req.body);
   blog.save()
     .then(result => {

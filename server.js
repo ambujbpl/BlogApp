@@ -17,6 +17,8 @@ const authRoutes = require('./mvc/auth/route/authRoutes');
 const blogRoutes = require('./mvc/blog/route/blogRoutes');
 // About Routes
 const aboutRoutes = require('./mvc/about/route/aboutRoutes');
+// Like Routes
+const likeRoutes = require('./mvc/like/route/likeRoutes');
 
 mongoose.connect(config.connectionString, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(result => {
@@ -50,8 +52,10 @@ app.get('/', requireAuth, (req, res) => {
 app.use(authRoutes);
 // blog routes
 app.use('/blogs', requireAuth, blogRoutes);
-// blog routes
+// about routes
 app.use('/about', requireAuth, aboutRoutes);
+// like routes
+app.use('/like', requireAuth, likeRoutes);
 
 // 404 page
 app.use((req, res) => {
