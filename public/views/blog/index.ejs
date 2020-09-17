@@ -4,20 +4,29 @@
 <body>
   <%- include("./../partials/nav.ejs") %>
 
-  <div class="blogs content">
-    <h2>All Blogs</h2>
+  <div class="row container">
 
     <% if (blogs.length > 0) { %>
       <% blogs.forEach(blog => { %>
-        <a class="single" href="/blogs/<%= blog._id %>">
-          <h3 class="title"><%= blog.title %></h3>
-          <p class="snippet"><%= blog.snippet %></p>
-        </a>
+        <div class="col s4 p5">
+          <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <img class="activator" src="./../assets/icons/office.jpg">
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4"><%= blog.title %><i class="material-icons right">more_vert</i></span>
+              <p><a href="/blogs/<%= blog._id %>">More Details</a></p>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4"><%= blog.title %><i class="material-icons right">close</i></span>
+              <p><%= blog.body %></p>
+            </div>
+          </div>
+        </div>
       <% }) %>
     <% } else { %>
       <p>There are no blogs to display...</p>
     <% } %>
-    
   </div>
 
   <%- include("./../partials/footer.ejs") %>
