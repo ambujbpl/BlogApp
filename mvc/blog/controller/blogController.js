@@ -10,16 +10,13 @@ const blog_index = async (req, res) => {
   Blog.find().sort({ createdAt: -1 })
     .then( async result => {
       for(let i=0; i<result.length; i++) {
-        // result.forEach(blog => {
-        let likeResult = await Like.find({blog_id:result[i]._id,created_by:req.cookies.user_id})
-        console.log(`${result[i]._id} : likeResult = `,likeResult);
+        let likeResult = await Like.find({blog_id:result[i]._id,created_by:req.cookies.user_id});
         if(likeResult.length == 0) {
           result[i].like = 0;
         } else {
           result[i].like = likeResult[0].type;
         }
       }
-      console.log('result : ',result);
       res.render('blog/index', { blogs: result, title: 'All blogs' });
     })
     .catch(err => {
@@ -63,7 +60,6 @@ const blog_create_get = (req, res) => {
  */
 const blog_create_post = (req, res) => {
   req.body.created_by = req.cookies.user_id;
-  console.log('req.body : ',req.body)
   const blog = new Blog(req.body);
   blog.save()
     .then(result => {
