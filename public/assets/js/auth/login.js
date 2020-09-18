@@ -2,7 +2,6 @@ $( document ).ready(function() {
   const form = document.querySelector('form');
   const emailError = document.querySelector('.email.error');
   const passwordError = document.querySelector('.password.error');
-
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -21,7 +20,6 @@ $( document ).ready(function() {
         headers: {'Content-Type': 'application/json'}
       });
       const data = await res.json();
-      console.log(data);
       if (data.errors) {
         emailError.textContent = data.errors.email;
         passwordError.textContent = data.errors.password;
@@ -29,7 +27,6 @@ $( document ).ready(function() {
       if (data.user) {
         location.assign('/');
       }
-
     }
     catch (err) {
       console.log(err);

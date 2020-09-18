@@ -15,7 +15,7 @@
             </div>
             <div class="card-content">
               <span class="card-title activator grey-text text-darken-4"><%= blog.title %><i class="material-icons right">more_vert</i></span>
-              <p><a href="/blogs/<%= blog._id %>">More Details</a></p>
+              <p><a href="/blogs/<%= blog._id %>">More Details</a><a class="ml10" onclick="blogLikeDissLikeFunction(1,'<%= blog._id %>')"><i class="material-icons">thumb_up</i></a><a class="ml10" onclick="blogLikeDissLikeFunction(2,'<%= blog._id %>')"><i class="material-icons">thumb_down</i></a><span>Like : <%= blog.like %></span></p>
             </div>
             <div class="card-reveal">
               <span class="card-title grey-text text-darken-4"><%= blog.title %><i class="material-icons right">close</i></span>
@@ -30,5 +30,6 @@
   </div>
 
   <%- include("./../partials/footer.ejs") %>
+  <script type="text/javascript" src="./../assets/js/blog/index.js"></script>
 </body>
 </html>

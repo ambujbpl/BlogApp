@@ -12,7 +12,8 @@ const blog_like_post = (req, res) => {
   const like = new Like(req.body);
   like.save()
     .then(result => {
-      res.redirect('/blogs');
+      // res.redirect('/blogs');
+      res.json({success:true,data:result,message:`like updated successfully`});
     })
     .catch(err => {
       console.log(err);

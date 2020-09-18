@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const likeSchema = new mongoose.Schema({
+  type: {
+    type: Number,
+    required: true,
+  },
   blog_id: {
     type: String,
     required: true,
