@@ -57,7 +57,7 @@ const login_post = async (req, res) => {
     const token = createToken(user._id);
     res.cookie('user_id', user._id, { httpOnly: true, maxAge: config.maxAge * 1000 });// cookies max time will be milisecond that's why multiply by 1000
     res.cookie('jwt', token, { httpOnly: true, maxAge: config.maxAge * 1000 });// cookies max time will be milisecond that's why multiply by 1000
-    res.status(200).json({ user: user._id });
+    res.status(200).json({ success:true, user: user._id, message: 'You are successfully logged in' });
   } catch (err) {
     const errors = handleErrors(err);
     res.status(400).json({ errors });

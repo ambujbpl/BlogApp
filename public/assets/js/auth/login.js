@@ -4,7 +4,7 @@ $( document ).ready(function() {
   const passwordError = document.querySelector('.password.error');
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-
+    $('#loader-page').show();
     // reset errors
     emailError.textContent = '';
     passwordError.textContent = '';
@@ -25,11 +25,16 @@ $( document ).ready(function() {
         passwordError.textContent = data.errors.password;
       }
       if (data.user) {
-        location.assign('/');
+        alertify.success(data.message);
+        setTimeout(()=> {
+          location.assign('/');
+        });
       }
     }
     catch (err) {
       console.log(err);
+      $('#loader-page').hide();
     }
   });
+  $('#loader-page').hide();
 });

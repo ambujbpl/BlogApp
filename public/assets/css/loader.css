@@ -1,0 +1,154 @@
+
+/*###################################################################*/
+/*load Property*/
+
+/*###################################################################*/
+
+.bodyloading {
+ background: #000000 none repeat scroll 0 0;
+ height: 100%;
+ opacity: 0.5;
+ position: fixed;
+ right: 0;
+ text-align: center;
+ top: 0;
+ width: 100%;
+ z-index: 1050;
+}
+
+.boxloading {
+ display: block;
+ position: relative;
+ left: 50%;
+ top: 50%;
+ width: 150px;
+ height: 150px;
+ margin: -75px 0 0 -75px;
+ border-radius: 50%;
+ border: 3px solid transparent;
+ border-top-color: #3498db;
+ -webkit-animation: spin 2s linear infinite;
+ animation: spin 2s linear infinite;
+ z-index: 1051;
+}
+
+.boxloading:before {
+ content: "";
+ position: absolute;
+ top: 5px;
+ left: 5px;
+ right: 5px;
+ bottom: 5px;
+ border-radius: 50%;
+ border: 3px solid transparent;
+ border-top-color: #e74c3c;
+ -webkit-animation: spin 3s linear infinite;
+ animation: spin 3s linear infinite
+}
+
+.boxloading:after {
+ content: "";
+ position: absolute;
+ top: 15px;
+ left: 15px;
+ right: 15px;
+ bottom: 15px;
+ border-radius: 50%;
+ border: 3px solid transparent;
+ border-top-color: #f9c922;
+ -webkit-animation: spin 1.5s linear infinite;
+ animation: spin 1.5s linear infinite
+}
+
+@-webkit-keyframes spin {
+ 0% {
+   -webkit-transform: rotate(0deg);
+   -ms-transform: rotate(0deg);
+   transform: rotate(0deg)
+ }
+ 100% {
+   -webkit-transform: rotate(360deg);
+   -ms-transform: rotate(360deg);
+   transform: rotate(360deg)
+ }
+}
+
+@keyframes spin {
+ 0% {
+   -webkit-transform: rotate(0deg);
+   -ms-transform: rotate(0deg);
+   transform: rotate(0deg)
+ }
+ 100% {
+   -webkit-transform: rotate(360deg);
+   -ms-transform: rotate(360deg);
+   transform: rotate(360deg)
+ }
+}
+
+/* Loader css */
+#page-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #E6E8EC;
+  z-index: 9999
+}
+
+#page-loader.fade {
+  display: none
+}
+
+#page-loader.fade.in,
+#page-loader.fade.show {
+  display: block
+}
+
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0)
+  }
+  to {
+    -webkit-transform: rotate(359deg)
+  }
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0)
+  }
+  to {
+    transform: rotate(359deg)
+  }
+}
+
+.spinner,
+.spinner-small {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -20px 0 0 -20px;
+  border: 2px solid rgba(0, 0, 0, .5);
+  border-top: 2px solid #fff;
+  border-radius: 100%
+}
+
+.fade.in .spinner,
+.fade.in .spinner-small,
+.fade.show .spinner,
+.fade.show .spinner-small {
+  -webkit-animation: rotation .6s infinite linear;
+  animation: rotation .6s infinite linear
+}
+
+.spinner-small {
+  border: 2px solid rgba(0, 0, 0, .05);
+  border-top: 2px solid #24B498;
+  height: 30px;
+  width: 30px;
+  margin: -15px 0 0 -15px
+}

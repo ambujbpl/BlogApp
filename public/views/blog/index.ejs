@@ -19,22 +19,26 @@
               </span>
               <p>
                 <a href="/blogs/<%= blog._id %>">More Details</a>
-                <% if (blog.like == 1) { %>
+                <% if (blog.type == 1) { %>
                   <a class="ml10 green-text"><i class="material-icons">thumb_up</i></a>
-                  <a class="ml10" onclick="blogLikeDissLikeFunction(2,'<%= blog._id %>')"><i class="material-icons">thumb_down</i></a>
-                <% } else if (blog.like == 2) { %>
-                  <a class="ml10" onclick="blogLikeDissLikeFunction(1,'<%= blog._id %>')"><i class="material-icons">thumb_up</i></a>
+                  <a class="ml10 hoverCss tooltipped" data-position="bottom" data-tooltip="Click me to dislike this blog" onclick="blogLikeDissLikeFunction(2,'<%= blog._id %>')"><i class="material-icons">thumb_down</i></a>
+                <% } else if (blog.type == 2) { %>
+                  <a class="ml10 hoverCss tooltipped" data-position="bottom" data-tooltip="Click me to like this blog" onclick="blogLikeDissLikeFunction(1,'<%= blog._id %>')"><i class="material-icons">thumb_up</i></a>
                   <a class="ml10 red-text"><i class="material-icons">thumb_down</i></a>
                 <% } else { %>
-                  <a class="ml10" onclick="blogLikeDissLikeFunction(1,'<%= blog._id %>')"><i class="material-icons">thumb_up</i></a>
-                  <a class="ml10" onclick="blogLikeDissLikeFunction(2,'<%= blog._id %>')"><i class="material-icons">thumb_down</i></a>
+                  <a class="ml10 hoverCss tooltipped" data-position="bottom" data-tooltip="Click me to like this blog" onclick="blogLikeDissLikeFunction(1,'<%= blog._id %>')"><i class="material-icons">thumb_up</i></a>
+                  <a class="ml10 hoverCss tooltipped" data-position="bottom" data-tooltip="Click me to dislike this blog" onclick="blogLikeDissLikeFunction(2,'<%= blog._id %>')"><i class="material-icons">thumb_down</i></a>
                 <% } %>
-                <span>Like : <%= blog.like %></span>
+                <!-- <span>Like : <%= blog.type %></span> -->
               </p>
             </div>
-            <div class="card-reveal">
+            <div class="card-reveal teal lighten-4">
               <span class="card-title grey-text text-darken-4"><%= blog.title %><i class="material-icons right">close</i></span>
-              <p><%= blog.body %></p>
+              <p class='scroll'><%= blog.body %></p>
+              <div class="row mb0">
+                <div class="col s6 center">Total Likes : <span class="green-text"><%= blog.likeCount %></span></div>
+                <div class="col s6 center">Total Dislikes : <span class="red-text"><%= blog.disLikeCount %></span></div>
+              </div>
             </div>
           </div>
         </div>

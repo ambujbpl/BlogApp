@@ -1,8 +1,10 @@
 $( document ).ready(function() {
-
+  $('.tooltipped').tooltip();
+  $('#loader-page').hide();
 });
 
 blogLikeDissLikeFunction = (type,id) => {
+  $('#loader-page').show();
   let obj = {
     type: type,
     blog_id: id
@@ -18,21 +20,18 @@ blogLikeDissLikeFunction = (type,id) => {
   .then((response) => response.json())
   .then((responseJson) => {
     console.log('response object:',responseJson);
-    // alert(responseJson.message);
-    // setTimeout(() =>{
-    // resetBirdRegistryForm(birdObj);},150);
     if(responseJson.success){
       alertify.success(responseJson.message);
       setTimeout(()=> {
         location.assign('/blogs');
-      },250)
-      // alertify.alert('Blog Action', responseJson.message, function(){ location.assign('/blogs'); });
-      // location.assign('/blogs');
+      },250);
     } else {
       alertify.error('something went wrong, contact your administrator');
+      $('#loader-page').hide();
     }
   })
   .catch((error) => {
     console.error(error);
+    $('#loader-page').hide();
   });
 }

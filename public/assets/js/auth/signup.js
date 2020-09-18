@@ -39,4 +39,5 @@ $( document ).ready(function() {
       console.log(err);
     }
   });
+  $('#loader-page').hide();
 });  

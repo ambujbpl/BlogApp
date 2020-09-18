@@ -1,17 +1,24 @@
+<%- include("./loader.ejs") %>
 <nav>
   <div class="nav-wrapper p5">
-    <a href="/" class="brand-logo">Harshuj Blogs</a>
+    <a onclick="goToIndex('/');" class="brand-logo hoverCss">Harshuj Blogs</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <% if (user) { %>
         <li>Welcome, <%= user.name %></li>
-        <li><a href="/">Blogs</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/blogs/create">New Blog</a></li>
-        <li><a href="/logout">Log Out</a></li>
+        <li class="hoverCss"><a  onclick="goToIndex('/');">Blogs</a></li>
+        <li class="hoverCss"><a  onclick="goToIndex('/about');">About</a></li>
+        <li class="hoverCss"><a  onclick="goToIndex('/blogs/create');">New Blog</a></li>
+        <li class="hoverCss"><a  onclick="goToIndex('/logout');">Log Out</a></li>
       <% } else { %>
-        <li><a href="/login">Log in</a></li>
-        <li><a href="/signup">Sign up</a></li>
+        <li class="hoverCss"><a  onclick="goToIndex('/login');">Log in</a></li>
+        <li class="hoverCss"><a  onclick="goToIndex('/signup');">Sign up</a></li>
       <% } %>
     </ul>
   </div>
 </nav>
+<script type="text/javascript">
+  goToIndex = (url) => {
+    $('#loader-page').show();
+    location.assign(url);
+  }
+</script>

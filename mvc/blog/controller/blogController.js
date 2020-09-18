@@ -10,11 +10,9 @@ const blog_index = async (req, res) => {
   Blog.find().sort({ createdAt: -1 })
     .then( async result => {
       for(let i=0; i<result.length; i++) {
-        let likeResult = await Like.find({blog_id:result[i]._id,created_by:req.cookies.user_id});
-        if(likeResult.length == 0) {
-          result[i].like = 0;
-        } else {
-          result[i].like = likeResult[0].type;
+        let likeResult = await Like.getLikesCountandType(result[i]._id,req.cookies.user_id);
+        for (key in likeResult) {
+          result[i][key] = likeResult[key]; 
         }
       }
       res.render('blog/index', { blogs: result, title: 'All blogs' });
