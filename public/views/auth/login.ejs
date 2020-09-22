@@ -3,18 +3,18 @@
 
 <body>
   <%- include("./../partials/nav.ejs") %>
-
-  <form action="/login" class="p10 mtb20lrAuto">
-    <p class="red-text m0">Login</p>
-    <label for="email">Email</label>
-    <input type="text" name="email" required />
-    <div class="email error"></div>
-    <label for="password">Password</label>
-    <input type="password" name="password" required />
-    <div class="password error"></div>
-    <button>login</button>
-  </form>
-
+  <div class="authContainer">
+    <form action="/login" class="p10 mtb20lrAuto">
+      <p class="red-text m0">Login</p>
+      <label for="email">Email</label>
+      <input type="text" name="email" required />
+      <div class="email error"></div>
+      <label for="password">Password</label>
+      <input type="password" name="password" required />
+      <div class="password error"></div>
+      <button>login</button>
+    </form>
+  </div>
   <%- include('./../partials/footer'); -%>
   <script type="text/javascript" src="./../assets/js/auth/login.js"></script>
 </body>

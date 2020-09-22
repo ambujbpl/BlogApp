@@ -2,6 +2,9 @@
 body, html {
     height: 100%;
 }
+.authContainer {
+  min-height: 380px;
+}
 .m0 {
   margin: 0px;
 }.m10 {
