@@ -3,17 +3,39 @@
 
 <body>
   <%- include("./../partials/nav.ejs") %>
-  <div class="authContainer">
-    <form action="/login" class="p10 mtb20lrAuto">
-      <p class="red-text m0">Login</p>
-      <label for="email">Email</label>
-      <input type="text" name="email" required />
-      <div class="email error"></div>
-      <label for="password">Password</label>
-      <input type="password" name="password" required />
-      <div class="password error"></div>
-      <button>login</button>
-    </form>
+  <div class="container">
+    <div class="row">
+      <main>
+        <center>
+          <div class="container">
+            <div  class="z-depth-3 y-depth-3 x-depth-3 grey green-text lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px; margin-top: 60px; solid #EEE;">
+              <p class="title red-text mtb10 center">Login</p>
+              <div class='row'>
+                <div class='input-field col s12'>
+                  <input class="validate" type="text" name="email" id="email" required />
+                  <label for='email'>Username</label>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='input-field col m12'>
+                  <input class="validate" type="password" name="password" id='password' required />
+                  <label for='password'>Password</label>
+                </div>
+                <label style='float: right;'>
+                <a><b style="color: #F5F5F5;">Forgot Password?</b></a>
+                </label>
+              </div>
+              <br/>
+              <center>
+                <div class='row'>
+                  <button style="margin-left:65px;"  type='submit' name='btn_login' class='col  s6 btn btn-small white black-text  waves-effect z-depth-1 y-depth-1' onclick="loginFunction();">Login</button>
+                </div>
+              </center>
+            </div>
+          </div>
+        </center>
+      </main>
+    </div>
   </div>
   <%- include('./../partials/footer'); -%>
   <script type="text/javascript" src="./../assets/js/auth/login.js"></script>
